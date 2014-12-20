@@ -69,4 +69,22 @@ use lithium\data\Connections;
 // 	'encoding' => 'UTF-8'
 // ));
 
+Connections::add('default', array(
+    'development' => array(
+        'type' => 'MongoDb',
+        'host' => 'localhost',
+        'database' => 'development'
+    ),
+    'test' => array(
+        'type' => 'MongoDb',
+        'host' => 'localhost',
+        'database' => 'test'
+    ),
+    'production' => array(
+        'type' => 'MongoDb',
+        'host' => 'localhost',
+        'database' => 'production'
+    )
+));
+
 ?>

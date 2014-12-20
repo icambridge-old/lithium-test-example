@@ -20,6 +20,25 @@
  */
 require dirname(__DIR__) . '/config/bootstrap.php';
 
+lithium\core\Environment::is(function($request){
+    $host = $request->env('HTTP_HOST');
+
+    if ($host == 'php.dev' || $host == 'localhost') {
+        return 'development';
+    }
+    if (preg_match('/test/', $host)) {
+        return 'test';
+    }
+    if (preg_match('/^qa/', $host)) {
+        return 'qa';
+    }
+    if (preg_match('/beta/', $host)) {
+        return 'staging';
+    }
+    return 'production';
+});
+
+
 /**
  * The following will instantiate a new `Request` object and pass it off to the `Dispatcher` class.
  * By default, the `Request` will automatically aggregate all the server / environment settings, URL
